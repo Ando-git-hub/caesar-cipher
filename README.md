@@ -2,6 +2,8 @@
 
 This project is encodes input text by "Caesar cipher" or decodes already encoded text.
 
+`Note: supported only latin letters, other symbols not changed.`
+
 ### For run
 
 #### **Run encode `node cipher.js arg1 arg2`**

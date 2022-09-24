@@ -1,7 +1,8 @@
 "use strict";
 
-const supportedSymbols = 'abcdefghijklmnopqrstuvwxyz';
-const count = supportedSymbols.length;
+const lowLetters = 'abcdefghijklmnopqrstuvwxyz';
+const upLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const count = upLetters.length;
 
 
 module.exports.cipher = function cipher (input, key) {
@@ -9,10 +10,10 @@ module.exports.cipher = function cipher (input, key) {
     for(let i = 0; i < count; i++) {
         let j = i + key;
         if(j >= count) j = j - count;
-        obj[supportedSymbols[i]] = supportedSymbols[j]
+        obj[lowLetters[i]] = lowLetters[j]
+        obj[upLetters[i]] = upLetters[j]
     }
 
-    console.log(obj)
     let encodedText = ''
     for (let char of input) {
         encodedText += obj[char] ? obj[char] : char;
@@ -27,7 +28,8 @@ exports.decoder = function decoder(input, key) {
     for(let i = 0; i < count; i++) {
         let j = i + key;
         if(j >= count) j = j - count;
-        obj[supportedSymbols[j]] = supportedSymbols[i];
+        obj[lowLetters[i]] = lowLetters[j]
+        obj[upLetters[i]] = upLetters[j]
     }
 
     let decodedText = ''
@@ -38,6 +40,3 @@ exports.decoder = function decoder(input, key) {
     console.log('decodedText ', decodedText);
     return decodedText;
 }
-
-// cipher('abc1, sdfo\nfksjdfhkjhfkjaerhfekrfdasd', 4)
-// decoder('efg1, whjs\njownhjlonljoneivljiovjhewh', 4)
